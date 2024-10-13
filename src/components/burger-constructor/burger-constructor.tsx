@@ -27,7 +27,11 @@ export const BurgerConstructor: FC = () => {
 
   const onOrderClick = () => {
     if (!user) {
-      navigate('/register', { replace: true });
+      navigate('/register', {
+        replace: true,
+        state: { from: location.pathname }
+      });
+      return;
     }
 
     if (!constructorItems.bun || orderRequest) return;

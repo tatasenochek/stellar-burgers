@@ -8,6 +8,7 @@ import {
 } from '../../services/slices/userSlice/userSlice';
 import { Preloader } from '@ui';
 import { loginUser } from '../../services/slices/userSlice/fetchUser';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Login: FC = () => {
   const [email, setEmail] = useState('');
@@ -15,11 +16,15 @@ export const Login: FC = () => {
   const dispatch = useDispatch();
   const error = useSelector(errorSelect);
   const isLoading = useSelector(isLoadingSelect);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(clearError());
     dispatch(loginUser({ email, password }));
+    const from = location.state?.from || '/';
+    navigate(from, { replace: true });
   };
 
   return (
