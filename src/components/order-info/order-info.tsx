@@ -22,6 +22,7 @@ export const OrderInfo: FC = () => {
   useEffect(() => {
     if (!orderData) {
       dispatch(getOrderByNumber(Number(number)));
+      console.log(getOrderByNumber(Number(number)));
     }
   }, [dispatch, number, orderData]);
 
