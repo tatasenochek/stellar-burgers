@@ -20,6 +20,11 @@ const authUser = (isAuth: boolean) => {
   }
 };
 
+afterEach(() => {
+  cy.clearCookie('accessToken');
+  localStorage.removeItem('refreshToken');
+});
+
 describe('проверяем функциональность навигационного меню', () => {
   it('проверяем, что ссылка "Конструктор" работает', () => {
     cy.get("[data-cy='constructor-link']").click();
